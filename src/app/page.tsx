@@ -326,25 +326,27 @@ function Hero() {
             className="text-white/55 font-light leading-relaxed max-w-[440px] mx-auto lg:mx-0 mb-10"
             style={{ fontSize: "clamp(15px, 1.6vw, 17px)" }}
           >
-            Get Regular analyzes your stool, meals, and biomarkers to give you
-            personalized insights.
+            Get Regular analyzes your stool, meals, symptoms and biomarkers to
+            give you personalized insights.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.9 }}
-            className="flex flex-col sm:flex-row items-center lg:items-start gap-4"
+            className="hidden lg:flex flex-wrap items-start gap-2.5"
           >
-            <a
-              href={APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-              className="glass-pill-dark inline-flex items-center gap-2.5 text-white px-8 py-4 rounded-full text-sm font-medium tracking-wide"
-            >
-              <AppleIcon />
-              Download on the App Store
-            </a>
+            {["Find your triggers", "Stop guessing", "Feel better daily"].map((label, i) => (
+              <motion.span
+                key={label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.0 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-white/70 px-3.5 py-1.5 rounded-full text-[13px] font-medium tracking-wide bg-white/[0.03] border border-white/[0.08]"
+              >
+                {label}
+              </motion.span>
+            ))}
           </motion.div>
         </div>
 
@@ -357,7 +359,7 @@ function Hero() {
           className="relative mx-auto lg:mx-0 w-[260px] md:w-[280px] lg:w-[300px]"
         >
           {/* Phone bezel */}
-          <div className="relative rounded-[44px] p-[10px] bg-gradient-to-b from-[#2a2520] to-[#1a1714] shadow-[0_24px_80px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06),inset_0_1px_0_rgba(255,255,255,0.05)]">
+          <div className="relative rounded-[38px] p-[5px] bg-gradient-to-b from-[#2a2520] to-[#1a1714] shadow-[0_24px_80px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06),inset_0_1px_0_rgba(255,255,255,0.05)]">
             {/* Dynamic island */}
             <div className="absolute top-[18px] left-1/2 -translate-x-1/2 w-[90px] h-[28px] bg-black rounded-full z-10" />
 
@@ -381,6 +383,42 @@ function Hero() {
           {/* Reflection glow */}
           <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[70%] h-20 bg-[radial-gradient(ellipse,rgba(196,168,130,0.12)_0%,transparent_70%)] blur-2xl pointer-events-none" />
         </motion.div>
+
+        {/* Mobile pills + scroll hint — under phone */}
+        <div className="flex lg:hidden flex-col items-center col-span-full mt-6 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.9 }}
+            className="flex flex-wrap justify-center gap-2.5"
+          >
+            {["Find your triggers", "Stop guessing", "Feel better daily"].map((label, i) => (
+              <motion.span
+                key={label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.0 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-white/70 px-3.5 py-1.5 rounded-full text-[13px] font-medium tracking-wide bg-white/[0.03] border border-white/[0.08]"
+              >
+                {label}
+              </motion.span>
+            ))}
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.4 }}
+            className="flex flex-col items-center gap-2.5"
+          >
+            <span className="text-[10px] tracking-[0.22em] uppercase text-white/30">
+              Keep things moving
+            </span>
+            <div
+              className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent"
+              style={{ animation: "scrollPulse 2s ease-in-out infinite 1.6s" }}
+            />
+          </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
@@ -388,10 +426,10 @@ function Hero() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.4 }}
-        className="absolute bottom-9 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center gap-2.5"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[2] hidden lg:flex flex-col items-center gap-2.5"
       >
         <span className="text-[10px] tracking-[0.22em] uppercase text-white/30">
-          Scroll
+          Keep things moving
         </span>
         <div
           className="w-px h-11 bg-gradient-to-b from-white/30 to-transparent"
@@ -406,13 +444,13 @@ function Hero() {
 
 function Marquee() {
   const items = [
-    "Stool photo analysis",
-    "Food photo logging",
-    "Daily gut scores",
-    "Personalized supplement plans",
-    "Root cause identification",
-    "Board-certified GI doctor",
-    "Weekly digest insights",
+    "AI stool analysis",
+    "Full nutrition breakdown",
+    "Gut Check AI advisor",
+    "Daily gut & nutrition scores",
+    "Personalized experiments",
+    "Check your food score first",
+    "Weekly digest reports",
   ];
 
   return (
@@ -422,9 +460,9 @@ function Marquee() {
         style={{ animation: "marquee 30s linear infinite" }}
       >
         {[...items, ...items].map((item, i) => (
-          <span key={i} className="inline-flex items-center gap-6">
+          <span key={i} className="inline-flex items-center gap-10">
             <span className="inline-block w-[5px] h-[5px] rounded-full bg-white/[0.12] shadow-[0_0_4px_rgba(255,255,255,0.06),inset_0_0.5px_0_rgba(255,255,255,0.15)] shrink-0" />
-            <span className="font-body text-[13px] font-medium tracking-[0.08em] uppercase text-taupe-light/70 pr-6">
+            <span className="font-body text-[13px] font-medium tracking-[0.08em] uppercase text-taupe-light/70 pr-10">
               {item}
             </span>
           </span>
@@ -546,7 +584,7 @@ function ProblemSection() {
                   transition={{
                     opacity: { duration: 0.6, delay: 0.3 + i * 0.15, ease: [0.22, 1, 0.36, 1] },
                     scale: { duration: 0.6, delay: 0.3 + i * 0.15, ease: [0.22, 1, 0.36, 1] },
-                    y: { duration: 3, delay: 0.3 + i * 0.15 + 0.6, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+                    y: { duration: 2.5 + i * 0.7, delay: 0.3 + i * 0.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
                   }}
                   className="font-display font-light text-[56px] md:text-[64px] text-accent-dark"
                 >
@@ -746,24 +784,24 @@ function HowItWorks() {
 
   const steps = [
     {
-      title: "Snap photos & log symptoms",
-      desc: "Food, stool, how you're feeling — photos or taps. No tedious manual entry.",
+      title: "Snap it.",
+      desc: "Photo your food, stool, and symptoms. Ten seconds, done.",
     },
     {
-      title: "AI does the dirty work",
-      desc: "Advanced pattern recognition meets clinical guidance from a board-certified gastroenterologist. Every analysis, personalized to you.",
+      title: "We analyze it.",
+      desc: "AI cross-references everything against clinical GI guidance to find your patterns.",
     },
     {
-      title: "Get your daily scores",
-      desc: "Your Gut and Nutrition scores update with each input — a real-time, honest picture of your digestive health.",
+      title: "See your scores.",
+      desc: "Your daily Gut and Nutrition scores update in real time with every input.",
     },
     {
-      title: "Review your care plan",
-      desc: "A personalized plan built from your data — identifying likely nutrient gaps and guiding precise dietary and supplement adjustments.",
+      title: "Get your plan.",
+      desc: "Personalized dietary and supplement recommendations built from your data. Not anyone else\u2019s.",
     },
     {
-      title: "Track what actually works",
-      desc: "Your care plan evolves as you do. The more you use it, the smarter it gets. No generic advice. Ever.",
+      title: "Watch it work.",
+      desc: "Track what\u2019s moving the needle. Your plan evolves as your gut does.",
     },
   ];
 
@@ -771,10 +809,10 @@ function HowItWorks() {
     <section
       ref={ref}
       id="how"
-      className="bg-cream py-24 md:py-32 lg:py-36 px-5 md:px-8 lg:px-12"
+      className="bg-cream pt-24 md:pt-32 lg:pt-36 pb-0 px-5 md:px-8 lg:px-12"
     >
       <div className="max-w-[1080px] mx-auto">
-        <div className="max-w-[560px] mb-16 lg:mb-22">
+        <div className="max-w-[560px] mb-0">
           <motion.span
             variants={fadeUp}
             initial="hidden"
@@ -794,43 +832,170 @@ function HowItWorks() {
           </FloatingHeading>
         </div>
 
-        {/* Steps grid — 5 columns on desktop, horizontal scroll feel */}
-        <div className="relative">
-          {/* Connecting line (desktop only) */}
-          <div className="hidden lg:block absolute top-[27px] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-
-          <motion.div
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={staggerSlow}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-0"
-            style={{ perspective: "800px" }}
-          >
-            {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                variants={cardReveal}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="lg:px-4 group"
-              >
-                <div className="w-[68px] h-[68px] rounded-full glass flex items-center justify-center mb-7 font-display text-[32px] text-accent-dark relative z-[1] transition-all duration-300 group-hover:shadow-[0_4px_20px_rgba(196,168,130,0.2)]">
-                  {i + 1}
-                </div>
-                <span className="block text-[10px] tracking-[0.2em] uppercase text-accent mb-2.5">
-                  Step {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-[17px] font-semibold text-ink mb-2.5" style={{ fontFamily: "var(--font-inter)" }}>
-                  {step.title}
-                </h3>
-                <p className="text-[13px] leading-relaxed text-taupe">
-                  {step.desc}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+        {/* Steps with sticky phone */}
+        <StepsWithPhone steps={steps} inView={inView} />
       </div>
     </section>
+  );
+}
+
+
+function DesktopSteps({ steps, inView }: { steps: { title: string; desc: string }[]; inView: boolean }) {
+  const outerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: outerRef,
+    offset: ["start start", "end end"],
+  });
+  const x = useTransform(scrollYProgress, [0.05, 0.95], ["0%", `-${(steps.length - 1) * 100}%`]);
+
+  return (
+    <div ref={outerRef} className="hidden lg:block relative -mt-4" style={{ height: `${steps.length * 50}vh` }}>
+      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+        <div className="grid grid-cols-[280px_1fr] gap-16 w-full items-center">
+          {/* Left: phone */}
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+            transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="flex justify-center"
+          >
+            <img
+              src="/images/home.png"
+              alt="Get Regular home screen"
+              className="w-[260px] h-auto"
+            />
+          </motion.div>
+
+          {/* Right: horizontal steps */}
+          <div className="overflow-hidden">
+            <motion.div style={{ x }} className="flex">
+              {steps.map((step, i) => (
+                <div key={i} className="min-w-full px-4 group">
+                  <div className="flex items-center gap-5 mb-5">
+                    <div className="w-[56px] h-[56px] rounded-full glass flex items-center justify-center font-display text-[26px] text-accent-dark shrink-0 transition-all duration-300 group-hover:shadow-[0_4px_20px_rgba(196,168,130,0.2)]">
+                      <span className="-mb-2">{i + 1}</span>
+                    </div>
+                    <span className="text-[10px] tracking-[0.2em] uppercase text-accent">
+                      Step {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3
+                    className="text-[22px] font-semibold text-ink mb-3"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {step.title}
+                  </h3>
+                  <p className="text-[15px] text-taupe max-w-[380px]">
+                    {step.desc}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileSteps({ steps, inView }: { steps: { title: string; desc: string }[]; inView: boolean }) {
+  const outerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: outerRef,
+    offset: ["start start", "end end"],
+  });
+  const x = useTransform(scrollYProgress, [0.05, 0.95], ["0%", `-${(steps.length - 1) * 100}%`]);
+
+  return (
+    <div ref={outerRef} className="lg:hidden relative" style={{ height: `${steps.length * 50}vh` }}>
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden px-1">
+        {/* Phone */}
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="flex justify-center mb-8"
+        >
+          <img
+            src="/images/home.png"
+            alt="Get Regular home screen"
+            className="w-[180px] h-auto"
+          />
+        </motion.div>
+
+        {/* Horizontal steps */}
+        <motion.div style={{ x }} className="flex">
+          {steps.map((step, i) => (
+            <div key={i} className="min-w-full px-2 group">
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-[48px] h-[48px] rounded-full glass flex items-center justify-center font-display text-[22px] text-accent-dark shrink-0">
+                  <span className="-mb-1.5">{i + 1}</span>
+                </div>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-accent">
+                  Step {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <h3
+                className="text-[17px] font-semibold text-ink mb-2"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                {step.title}
+              </h3>
+              <p className="text-[13px] text-taupe max-w-[300px]">
+                {step.desc}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+function StepCard({ step, index }: { step: { title: string; desc: string }; index: number }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: 40 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="min-h-[40vh] flex items-center"
+    >
+      <div className="group">
+        <div className="flex items-center gap-5 mb-4">
+          <div className="w-[56px] h-[56px] rounded-full glass flex items-center justify-center font-display text-[26px] text-accent-dark shrink-0 transition-all duration-300 group-hover:shadow-[0_4px_20px_rgba(196,168,130,0.2)]">
+            <span className="-mb-2">{index + 1}</span>
+          </div>
+          <span className="text-[10px] tracking-[0.2em] uppercase text-accent">
+            Step {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
+        <h3
+          className="text-[20px] font-semibold text-ink mb-3"
+          style={{ fontFamily: "var(--font-inter)" }}
+        >
+          {step.title}
+        </h3>
+        <p className="text-[14px] text-taupe max-w-[340px]">
+          {step.desc}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+function StepsWithPhone({ steps, inView }: { steps: { title: string; desc: string }[]; inView: boolean }) {
+  return (
+    <>
+      {/* Desktop: sticky phone left + horizontal scroll-jacked steps right */}
+      <DesktopSteps steps={steps} inView={inView} />
+
+      {/* Mobile: scroll-jacked horizontal steps */}
+      <MobileSteps steps={steps} inView={inView} />
+    </>
   );
 }
 
@@ -1068,9 +1233,9 @@ function UGCSection() {
 
   const tiktokVideos = [
     { id: "7615765028137897246", user: "getregular", caption: "Gut health has never been this good, happy pooping!" },
-    { id: "7616045513066040607", user: "getregular", caption: "How to poop daily — gut health tips that actually work" },
+    { id: "7613530170246417695", user: "angpark", caption: "Testing the Get Regular app — this is actually so cool" },
     { id: "7617911085529648414", user: "getregular", caption: "Busy shoot day but still keeping track of my gut health" },
-    { id: "7610803260840004895", user: "getregular", caption: "My symptoms include... let Get Regular figure it out" },
+    { id: "7610105927986875678", user: "hallysicle", caption: "This app is actually life changing for gut health" },
     { id: "7610639249355902239", user: "getregular", caption: "Take your probiotics — this is my holy grail" },
     { id: "7610984655134805262", user: "layla.atiles", caption: "She called us cool and honestly, we'd have to agree" },
   ];
@@ -1090,7 +1255,7 @@ function UGCSection() {
             transition={{ duration: 0.6 }}
             className="block text-[10.5px] tracking-[0.22em] uppercase text-taupe mb-5"
           >
-            Real People, Real Results
+            The Movement
           </motion.span>
           <FloatingHeading
             className="font-display font-light tracking-tight text-ink"
@@ -1354,8 +1519,8 @@ function FoundersSection() {
           We didn&apos;t build Get Regular because it was a good market
           opportunity. We built it because we spent years feeling dismissed,
           confused, and stuck — cycling through elimination diets, expensive
-          tests, and conflicting advice that never actually solved anything. So
-          we built the tool we wished existed.
+          tests, temporary solutions and conflicting advice that never actually
+          solved anything. So we built the tool we wished existed.
         </motion.p>
 
         <motion.div
@@ -1424,28 +1589,14 @@ function FinalCTA() {
         transition={{ duration: 0.7, delay: 0.2 }}
         className="text-base text-white/40 max-w-[380px] mx-auto mb-13 leading-relaxed"
       >
-        Join the people already understanding their gut — and finally feeling
-        like themselves again.
-      </motion.p>
-
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        className="flex flex-col items-center"
-      >
+        Questions, comments, or poop photos at{" "}
         <a
-          href={APP_STORE_URL}
-          className="glass-pill-dark inline-flex items-center gap-3.5 text-white px-10 py-4.5 rounded-full text-[15px] font-medium tracking-wide mb-4"
+          href="mailto:hello@getregular.com"
+          className="text-white/60 hover:text-white/80 transition-colors"
         >
-          <AppleIcon className="w-5 h-5" />
-          Download on the App Store
+          hello@getregular.com
         </a>
-        <span className="text-[11.5px] text-white/28 tracking-[0.08em]">
-          iOS &middot; Android coming soon
-        </span>
-      </motion.div>
+      </motion.p>
     </section>
   );
 }
@@ -1535,6 +1686,24 @@ export default function Home() {
       <FoundersSection />
       <FinalCTA />
       <Footer />
+
+      {/* Sticky CTA */}
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 2, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50"
+      >
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-ink text-white px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-[12px] sm:text-sm font-medium tracking-wide border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition-all duration-300 whitespace-nowrap"
+        >
+          <AppleIcon />
+          Download on the App Store
+        </a>
+      </motion.div>
     </>
   );
 }
