@@ -13,6 +13,12 @@ import {
 const APP_STORE_URL =
   "https://apps.apple.com/ca/app/get-regular/id6749188690";
 
+function trackAppStoreClick(location: string) {
+  if (typeof window !== "undefined" && (window as any).posthog) {
+    (window as any).posthog.capture("app_store_click", { location });
+  }
+}
+
 /* ───────────────────── ANIMATION VARIANTS ───────────────────── */
 
 const fadeUp: Variants = {
@@ -203,6 +209,7 @@ function Nav() {
             href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackAppStoreClick("nav")}
             className={`text-[11px] font-medium tracking-[0.14em] uppercase px-6 py-2.5 rounded-full transition-all duration-300 ${
               scrolled
                 ? "bg-ink text-white hover:bg-ink-light glass-hover"
@@ -266,7 +273,7 @@ function Nav() {
             href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => { setMenuOpen(false); trackAppStoreClick("mobile_nav"); }}
             className="bg-accent text-white px-9 py-3.5 rounded-full font-body text-sm font-medium tracking-wide"
           >
             Download
@@ -1684,6 +1691,7 @@ export default function Home() {
           href={APP_STORE_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackAppStoreClick("sticky_cta")}
           className="inline-flex items-center gap-2 bg-ink text-white px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-[12px] sm:text-sm font-medium tracking-wide border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition-all duration-300 whitespace-nowrap"
         >
           <AppleIcon />
