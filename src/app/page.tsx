@@ -497,7 +497,7 @@ function ProblemSection() {
     {
       icon: "\u2715",
       title: "$400 at-home test kits",
-      desc: "A one-time snapshot with no ongoing guidance or actionable follow-up",
+      desc: "No ongoing guidance or actionable follow-up with a one-time snapshot",
       strike: true,
       bg: "/images/bg3-2.png",
     },
@@ -628,32 +628,18 @@ function ProblemSection() {
                   : "bg-ink/65"
               }`} />
 
-              <div className="relative z-[1] p-6 flex items-center gap-4.5">
-                <div
-                  className={`w-[42px] h-[42px] rounded-[11px] flex items-center justify-center shrink-0 ${
-                    card.highlight
-                      ? "overflow-hidden shadow-[0_2px_8px_rgba(196,168,130,0.3)]"
-                      : "bg-white/10 backdrop-blur-sm border border-white/20 text-[13px] font-medium text-white/80"
-                  }`}
-                >
-                  {card.highlight ? (
-                    <Image src="/images/app-icon.png" alt="Get Regular" width={42} height={42} className="rounded-[11px] w-full h-full object-cover" />
-                  ) : card.icon}
-                </div>
-                <div>
-                  <strong
-                    className={`block text-[17px] font-medium mb-1 ${
-                      card.strike
-                        ? "line-through text-white/70"
-                        : "text-white"
-                    }`}
-                  >
+              <div className="relative z-[1] p-6">
+                <div className="flex items-center gap-3 mb-1.5">
+                  {card.highlight && (
+                    <Image src="/images/app-icon.png" alt="Get Regular" width={28} height={28} className="rounded-[7px] w-7 h-7 object-cover shrink-0" />
+                  )}
+                  <strong className={`text-[17px] font-medium ${card.strike ? "line-through text-white/60" : "text-white"}`}>
                     {card.title}
                   </strong>
-                  <span className="text-[14.5px] text-white/80">
-                    {card.desc}
-                  </span>
                 </div>
+                <span className="text-[14.5px] text-white/80">
+                  {card.desc}
+                </span>
               </div>
             </motion.div>
           ))}
