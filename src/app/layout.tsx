@@ -43,6 +43,21 @@ export const metadata: Metadata = {
     description:
       "AI-powered gut health tracking built with a board-certified gastroenterologist.",
     type: "website",
+    images: [
+      {
+        url: "/images/preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Get Regular — AI Gut Health Tracking",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Get Regular — Trust Your Gut Again",
+    description:
+      "AI-powered gut health tracking built with a board-certified gastroenterologist.",
+    images: ["/images/preview.png"],
   },
 };
 

@@ -624,7 +624,7 @@ function ProblemSection() {
               )}
               <div className={`absolute inset-0 ${
                 card.highlight
-                  ? "bg-ink/60"
+                  ? "bg-ink/40"
                   : "bg-ink/65"
               }`} />
 
@@ -642,7 +642,7 @@ function ProblemSection() {
                 </div>
                 <div>
                   <strong
-                    className={`block text-[15px] font-medium mb-1 ${
+                    className={`block text-[17px] font-medium mb-1 ${
                       card.strike
                         ? "line-through text-white/70"
                         : "text-white"
@@ -650,7 +650,7 @@ function ProblemSection() {
                   >
                     {card.title}
                   </strong>
-                  <span className="text-[13.5px] text-white/80">
+                  <span className="text-[14.5px] text-white/80">
                     {card.desc}
                   </span>
                 </div>
